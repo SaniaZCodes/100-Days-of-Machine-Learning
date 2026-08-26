@@ -6,6 +6,9 @@ Percentile Method identifies outliers using percentile values.
 
 It assumes that extremely small and extremely large values are potential outliers.
 
+## Need to trim extreme top/bottom values → Percentile Method
+## Donot care about distribution
+
 ---
 
 ## Common Percentile Thresholds
