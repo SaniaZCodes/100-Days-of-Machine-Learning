@@ -1,0 +1,31 @@
+import pandas as pd
+
+# Sample Data
+df = pd.DataFrame({
+    'Age':[20,21,22,23,24,25,26,27,28,500]
+})
+
+# Calculate Percentile Limits
+lower_limit = df['Age'].quantile(0.01)
+upper_limit = df['Age'].quantile(0.99)
+
+print("Lower Limit:", lower_limit)
+print("Upper Limit:", upper_limit)
+
+# Detect Outliers
+outliers = df[
+    (df['Age'] < lower_limit) |
+    (df['Age'] > upper_limit)
+]
+
+print("\nOutliers")
+print(outliers)
+
+# Remove Outliers
+df = df[
+    (df['Age'] >= lower_limit) &
+    (df['Age'] <= upper_limit)
+]
+
+print("\nDataset After Removing Outliers")
+print(df)
