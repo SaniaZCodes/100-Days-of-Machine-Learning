@@ -114,3 +114,9 @@ Build Model and Predict
 ## Golden Line 🌟
 
 MICE predicts missing values using other features and keeps improving the prediction through multiple iterations.
+
+----
+
+## Golden Interview Answer 🌟
+
+IterativeImputer uses Bayesian Ridge Regression by default. We can provide another estimator such as Random Forest if we believe the relationships between features are complex. In practice, different estimators are often tested and the one giving the best results is selected.
