@@ -1,0 +1,25 @@
+import pandas as pd
+from scipy import stats
+
+# Sample Dataset
+df = pd.DataFrame({
+    'Age':[20,21,22,23,24,25,500]
+})
+
+print("Original Dataset")
+print(df)
+
+# Calculate Z-Score
+z_scores = stats.zscore(df['Age'])
+
+# Detect Outliers
+outliers = df[(z_scores > 3) | (z_scores < -3)]
+
+print("\nOutliers")
+print(outliers)
+
+# Remove Outliers
+df = df[(z_scores >= -3) & (z_scores <= 3)]
+
+print("\nDataset After Removing Outliers")
+print(df)
