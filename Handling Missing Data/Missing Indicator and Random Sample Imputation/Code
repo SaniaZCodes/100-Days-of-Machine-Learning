@@ -1,0 +1,17 @@
+import pandas as pd
+import numpy as np
+
+# Sample Data
+df = pd.DataFrame({
+    'Age':[20,np.nan,25,np.nan,30]
+})
+
+# Missing Indicator
+df['Age_Missing'] = df['Age'].isnull().astype(int)
+
+# Random Sample Imputation
+random_value = df['Age'].dropna().sample().values[0]
+
+df['Age'] = df['Age'].fillna(random_value)
+
+print(df)
