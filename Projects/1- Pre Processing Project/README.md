@@ -1,7 +1,8 @@
 This is my first project which includes following pre processing concepts.
 
 ✅ Exploratory Data Analysis (EDA)
-     ➡️ Univariate Analysis
+     ➡️ Univariate Analysis 
+     
      ➡️ Bivariate Analysis
      ➡️ Multivariate Analysis
      ➡️Boxplots & Histograms
