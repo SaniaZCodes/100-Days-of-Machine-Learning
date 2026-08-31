@@ -931,3 +931,397 @@ SGDRegressor
 
 One complete pass through the entire dataset.
 
+---
+
+
+# Understanding the sklearn Code
+
+## Batch Gradient Descent
+
+### Code
+
+```python
+from sklearn.linear_model import LinearRegression
+
+model = LinearRegression()
+
+model.fit(X_train, y_train)
+
+y_pred = model.predict(X_test)
+```
+
+### Explanation
+
+```python
+from sklearn.linear_model import LinearRegression
+```
+
+Imports the Linear Regression model from scikit-learn.
+
+---
+
+```python
+model = LinearRegression()
+```
+
+Creates an empty Linear Regression model.
+
+At this stage, the model does not know anything about the data.
+
+---
+
+```python
+model.fit(X_train, y_train)
+```
+
+Trains the model.
+
+During training:
+
+- Features are taken from X_train
+- Target values are taken from y_train
+- Model learns the best coefficients
+- Model learns the best intercept
+
+Goal:
+
+```text
+Minimize Error
+```
+
+---
+
+```python
+y_pred = model.predict(X_test)
+```
+
+Uses learned coefficients to make predictions on unseen data.
+
+---
+
+# Stochastic Gradient Descent (SGD)
+
+### Code
+
+```python
+from sklearn.linear_model import SGDRegressor
+
+model = SGDRegressor(
+    max_iter=1000,
+    learning_rate='constant',
+    eta0=0.01,
+    random_state=42
+)
+
+model.fit(X_train, y_train)
+
+y_pred = model.predict(X_test)
+```
+
+---
+
+## Explanation
+
+```python
+from sklearn.linear_model import SGDRegressor
+```
+
+Imports the SGD Regression model.
+
+This model learns using:
+
+```text
+Stochastic Gradient Descent
+```
+
+instead of the standard Linear Regression optimization method.
+
+---
+
+```python
+max_iter=1000
+```
+
+Maximum number of epochs.
+
+Meaning:
+
+```text
+Dataset can be processed
+up to 1000 times
+```
+
+if needed.
+
+---
+
+```python
+learning_rate='constant'
+```
+
+Learning rate remains fixed throughout training.
+
+---
+
+```python
+eta0=0.01
+```
+
+Initial learning rate.
+
+This controls:
+
+```text
+Step Size
+```
+
+during parameter updates.
+
+---
+
+```python
+random_state=42
+```
+
+Ensures reproducible results.
+
+Running the code again gives the same output.
+
+---
+
+```python
+model.fit(X_train, y_train)
+```
+
+Training starts.
+
+For every training sample:
+
+```text
+Calculate Error
+↓
+Calculate Gradient
+↓
+Update Parameters
+```
+
+---
+
+```python
+y_pred = model.predict(X_test)
+```
+
+Generates predictions.
+
+---
+
+# Accessing Coefficients
+
+### Code
+
+```python
+print(model.coef_)
+```
+
+### Explanation
+
+Displays the learned coefficients.
+
+Example:
+
+```text
+[120, 8000]
+```
+
+Means:
+
+```text
+Area coefficient = 120
+
+Bedroom coefficient = 8000
+```
+
+---
+
+# Accessing Intercept
+
+### Code
+
+```python
+print(model.intercept_)
+```
+
+### Explanation
+
+Displays the intercept.
+
+Example:
+
+```text
+10000
+```
+
+Meaning:
+
+When all feature values become zero,
+
+Prediction:
+
+```text
+10000
+```
+
+---
+
+# Mini-Batch Gradient Descent
+
+## Code
+
+```python
+from sklearn.linear_model import SGDRegressor
+
+model = SGDRegressor(
+    learning_rate='constant',
+    eta0=0.01,
+    random_state=42
+)
+
+batch_size = 100
+
+for i in range(0, len(X_train), batch_size):
+
+    X_batch = X_train[i:i+batch_size]
+    y_batch = y_train[i:i+batch_size]
+
+    model.partial_fit(X_batch, y_batch)
+
+y_pred = model.predict(X_test)
+```
+
+---
+
+## Explanation
+
+```python
+batch_size = 100
+```
+
+Mini-batch size is 100.
+
+Meaning:
+
+```text
+100 rows
+↓
+One Update
+```
+
+---
+
+```python
+for i in range(...)
+```
+
+Iterates over the dataset in small chunks.
+
+---
+
+```python
+X_batch
+```
+
+Stores the current batch features.
+
+---
+
+```python
+y_batch
+```
+
+Stores the current batch target values.
+
+---
+
+```python
+partial_fit()
+```
+
+Updates model parameters using only the current batch.
+
+This is the key function that creates Mini-Batch Gradient Descent behaviour.
+
+---
+
+```python
+predict()
+```
+
+Makes predictions on unseen data.
+
+---
+
+# Quick Comparison
+
+```text
+LinearRegression()
+↓
+Simple / Multiple Linear Regression
+```
+
+```text
+SGDRegressor()
+↓
+Stochastic Gradient Descent
+```
+
+```text
+SGDRegressor() + partial_fit()
+↓
+Mini-Batch Gradient Descent
+```
+
+---
+
+# Interview Questions
+
+Q. What is SGDRegressor?
+
+Answer:
+
+A regression model that learns using Stochastic Gradient Descent.
+
+---
+
+Q. What does max_iter represent?
+
+Answer:
+
+Maximum number of epochs.
+
+---
+
+Q. What does eta0 represent?
+
+Answer:
+
+Initial learning rate.
+
+---
+
+Q. Which function is used for Mini-Batch training?
+
+Answer:
+
+```python
+partial_fit()
+```
+
+---
+
+Q. Which sklearn class implements SGD?
+
+Answer:
+
+```python
+SGDRegressor
+```
