@@ -528,6 +528,7 @@ Direction of error reduction.
 
 ## Learning Rate
 
+Learning Rate is a hyperparameter that controls the size of each step taken by Gradient Descent while updating model parameters.
 Step size during updates.
 
 ---
