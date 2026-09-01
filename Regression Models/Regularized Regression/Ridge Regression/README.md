@@ -406,7 +406,7 @@ X_train, X_test, y_train, y_test = train_test_split(
     test_size=0.2,
     random_state=42
 )
-```text
+```
 
 ## Step 2: Linear Regression (Baseline)
 
@@ -427,7 +427,7 @@ test_r2 = r2_score(y_test, y_test_pred)
 print("Linear Regression")
 print("Train R²:", train_r2)
 print("Test R² :", test_r2)
-```text
+```
 
 
 ## Step 3: Detect Underfitting / Overfitting
@@ -454,7 +454,7 @@ test_r2 = poly_model.score(X_test_poly, y_test)
 print("Polynomial Regression")
 print("Train R²:", train_r2)
 print("Test R² :", test_r2)
-```text
+```
 
 
 ## Step 5: Ridge Regression
@@ -472,7 +472,7 @@ test_r2 = ridge.score(X_test, y_test)
 print("Ridge Regression")
 print("Train R²:", train_r2)
 print("Test R² :", test_r2)
-```text
+```
 
 
 ## Step 6: Ridge Using SGD
@@ -497,7 +497,7 @@ test_r2 = ridge_sgd.score(X_test, y_test)
 print("Ridge + SGD")
 print("Train R²:", train_r2)
 print("Test R² :", test_r2)
-```text
+```
 
 
 ---
