@@ -397,6 +397,7 @@ No
 # Complete Workflow Code for Revision
 ## Step 1: Train-Test Split
 
+```text
 from sklearn.model_selection import train_test_split
 
 X_train, X_test, y_train, y_test = train_test_split(
@@ -405,9 +406,11 @@ X_train, X_test, y_train, y_test = train_test_split(
     test_size=0.2,
     random_state=42
 )
+```text
 
 ## Step 2: Linear Regression (Baseline)
 
+```text
 from sklearn.linear_model import LinearRegression
 from sklearn.metrics import r2_score
 
@@ -424,6 +427,7 @@ test_r2 = r2_score(y_test, y_test_pred)
 print("Linear Regression")
 print("Train R²:", train_r2)
 print("Test R² :", test_r2)
+```text
 
 
 ## Step 3: Detect Underfitting / Overfitting
@@ -431,6 +435,7 @@ print("Test R² :", test_r2)
 
 ## Step 4: Polynomial Regression
 
+```text
 from sklearn.preprocessing import PolynomialFeatures
 from sklearn.linear_model import LinearRegression
 
@@ -449,10 +454,12 @@ test_r2 = poly_model.score(X_test_poly, y_test)
 print("Polynomial Regression")
 print("Train R²:", train_r2)
 print("Test R² :", test_r2)
+```text
 
 
 ## Step 5: Ridge Regression
 
+```text
 from sklearn.linear_model import Ridge
 
 ridge = Ridge(alpha=1.0)
@@ -465,10 +472,12 @@ test_r2 = ridge.score(X_test, y_test)
 print("Ridge Regression")
 print("Train R²:", train_r2)
 print("Test R² :", test_r2)
+```text
 
 
 ## Step 6: Ridge Using SGD
 
+```text
 from sklearn.linear_model import SGDRegressor
 
 ridge_sgd = SGDRegressor(
@@ -488,6 +497,8 @@ test_r2 = ridge_sgd.score(X_test, y_test)
 print("Ridge + SGD")
 print("Train R²:", train_r2)
 print("Test R² :", test_r2)
+```text
+
 
 ---
 
