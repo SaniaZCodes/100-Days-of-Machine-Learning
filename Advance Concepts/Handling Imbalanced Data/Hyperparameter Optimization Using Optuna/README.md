@@ -49,16 +49,12 @@ Examples:
 - max_depth
 - min_samples_split
 
----
-
 ### XGBoost
 
 - n_estimators
 - learning_rate
 - max_depth
 - subsample
-
----
 
 ### KNN
 
@@ -108,15 +104,11 @@ Combinations:
 
 Every combination is tested.
 
----
-
-## Advantages
+### Advantages
 
 ✅ Finds the best combination
 
----
-
-## Disadvantages
+### Disadvantages
 
 ❌ Very slow
 
@@ -142,15 +134,11 @@ It may check:
 10 random combinations
 ```
 
----
-
-## Advantages
+### Advantages
 
 ✅ Faster than GridSearchCV
 
----
-
-## Disadvantages
+### Disadvantages
 
 ❌ May miss the best parameters
 
@@ -187,15 +175,11 @@ Find Best Parameters
 Check Everything
 ```
 
----
-
 ### RandomizedSearchCV
 
 ```text
 Check Random Things
 ```
-
----
 
 ### Optuna
 
@@ -219,8 +203,6 @@ Check every location.
 
 Slow.
 
----
-
 ### Random Search
 
 ```text
@@ -228,8 +210,6 @@ Check random locations.
 ```
 
 Faster.
-
----
 
 ### Optuna
 
@@ -265,8 +245,6 @@ Result:
 ```text
 Accuracy = 80%
 ```
-
----
 
 ### Trial 2
 
@@ -310,7 +288,7 @@ Optuna Study
 
 ## Objective Function
 
-The function Optuna is trying to optimize.
+The function Optuna attempts to optimize.
 
 Examples:
 
@@ -334,41 +312,29 @@ RMSE
 
 Define an Objective Function.
 
----
-
 ## Step 2
 
 Optuna chooses hyperparameters.
-
----
 
 ## Step 3
 
 Model is trained.
 
----
-
 ## Step 4
 
 Performance is measured.
-
----
 
 ## Step 5
 
 Optuna learns from that trial.
 
----
-
 ## Step 6
 
 Next trial is generated intelligently.
 
----
-
 ## Step 7
 
-Repeat until desired number of trials is completed.
+Repeat until the desired number of trials is completed.
 
 ---
 
@@ -423,8 +389,6 @@ Repeat
 | GridSearchCV | Test all combinations |
 | RandomizedSearchCV | Test random combinations |
 | Optuna | Intelligent search |
-| Speed | Slowest → Fastest |
-| Efficiency | Lowest → Highest |
 
 ---
 
@@ -464,31 +428,21 @@ Repeat
 
 Optuna is a hyperparameter optimization framework that automatically searches for optimal hyperparameter values by learning from previous trials.
 
----
-
 ### What is a Trial?
 
 A single experiment performed during hyperparameter optimization.
-
----
 
 ### What is a Study?
 
 A collection of Optuna trials.
 
----
-
 ### What is an Objective Function?
 
-The function Optuna attempts to optimize, such as Accuracy, Recall, F1 Score, ROC-AUC, or RMSE.
-
----
+The function Optuna attempts to optimize such as Accuracy, Recall, F1 Score, ROC-AUC, or RMSE.
 
 ### Why is Optuna better than GridSearchCV?
 
 Because Optuna intelligently explores promising regions of the search space instead of testing every possible combination.
-
----
 
 ### Why is Optuna better than RandomizedSearchCV?
 
@@ -539,6 +493,7 @@ print(study.best_params)
 
 ```python
 import optuna
+
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import cross_val_score
 
@@ -581,7 +536,10 @@ study.optimize(
     n_trials=50
 )
 
+print("Best Parameters:")
 print(study.best_params)
+
+print("\nBest Score:")
 print(study.best_value)
 ```
 
@@ -591,6 +549,7 @@ print(study.best_value)
 
 ```python
 import optuna
+
 from xgboost import XGBClassifier
 from sklearn.model_selection import cross_val_score
 
@@ -618,55 +577,63 @@ def objective(trial):
 
     model = XGBClassifier(
         **params,
-        random_**ate=42
+        random_state=42
     )
 
-    score = cross_v**_score(
+    score = cross_val_score(
         model,
-        X_**ain,
+        X_train,
         y_train,
-        cv=**
+        cv=5,
         scoring="accuracy"
-    )**ean()
+    ).mean()
 
     return score
 
-study = **tuna.create_study(
-    direction=**aximize"
+study = optuna.create_study(
+    direction="maximize"
 )
 
 study.optimize(
-    o**ective,
+    objective,
     n_trials=50
 )
 
-print(**udy.best_params)
+print("Best Parameters:")
+print(study.best_params)
+
+print("\nBest Score:")
+print(study.best_value)
 ```
 
 ---
 
-# 📌 K** Takeaways
+# 📌 Key Takeaways
 
-✅ Hyperparameters con**ol model behavior.
+✅ Hyperparameters control model behavior.
 
-✅ GridSearchC**checks all combinations.
+✅ GridSearchCV checks all combinations.
 
-✅ Rando**zedSearchCV checks random combina**ons.
+✅ RandomizedSearchCV checks random combinations.
 
-✅ Optuna performs intellige** optimization.
+✅ Optuna performs intelligent optimization.
 
-✅ Trial = One exp**iment.
+✅ Trial = One experiment.
 
-✅ Study = Collection of t**als.
+✅ Study = Collection of trials.
 
-✅ Objective Function = Metr** being optimized.
+✅ Objective Function = Metric being optimized.
 
-✅ Faster and m**e efficient than traditional appr**ches.
+✅ Faster and more efficient than traditional approaches.
 
-✅ Widely used with Random **rest, XGBoost, LightGBM, and Deep**earning.
+✅ Widely used with Random Forest, XGBoost, LightGBM, and Deep Learning.
 
 ---
 
 # 🏁 Conclusion
 
-O**una is a modern and intelligent h**erparameter optimization framewor**that helps Machine Learning pract**
+Optuna is a modern and intelligent hyperparameter optimization framework that helps Machine Learning practitioners automatically find optimal model settings.
+
+By learning from previous trials and focusing on promising regions of the search space, Optuna achieves faster and more efficient optimization than GridSearchCV and RandomizedSearchCV.
+
+Its simplicity, efficiency, and industry adoption make it one of the most valuable tools for building high-performance Machine Learning models.
